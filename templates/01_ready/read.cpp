@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define fio ios::sync_with_stdio(false), cin.tie(0), cout.tie(0);
-typedef long long ll;
 
 inline int read() {
   int s = 0;
