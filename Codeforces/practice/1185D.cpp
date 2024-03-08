@@ -1,42 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
+// typedef long long ll;
+#define int long long
 
 inline void solve() {
   int n = 0;
   cin >> n;
-  vector<int> a(n);
-  for (register int i = 0; i < n; i++) {
+  vector<pair<int, int>> a(n);
+  for (int i = 0; i < n; i++) {
     int x = 0;
     cin >> x;
-    a[i] = x;
+    a[i] = {x, i};
   }
   if (n <= 3) {
     cout << 1 << endl;
     return;
   }
-  sort(a.begin(), a.end());
-  int diff1 = a[1] - a[0];
-  int diff2 = a[2] - a[1];
-  int diff3 = a[3] - a[2];
-  int diff = 0;
-  if (diff1 == diff2 && diff2 == diff3) {
-    diff = diff1;
-  }
-  int idx = -1;
-  for (register int i = 3; i < n; i++) {
-    if (a[i] - a[i - 1] != diff1) {
-      if (idx == -1) {
-        idx = i;
+  sort(a.begin(), a.end(), [](auto &x, auto &y) { return x.first < y.first; });
+  vector<pair<int, int>> diff_pair;
+  diff_pair.emplace_back(0, 1);
+  diff_pair.emplace_back(1, 2);
+  diff_pair.emplace_back(0, 2);
+  for (auto [f, t] : diff_pair) {
+    int diff = a[t].first - a[f].first;
+    int cnt = 0;
+    int from = a[f].first;
+    int tmp = a[0].second + 1;
+    for (int i = 0; i < n; i++) {
+      if (a[i].first == from) {
+        cnt++;
+        from += diff;
       } else {
-        cout << 0 << endl;
-        return;
+        tmp = a[i].second + 1;
       }
     }
+    if (cnt >= n - 1) {
+      cout << tmp << endl;
+      return;
+    }
   }
+  cout << -1 << endl;
 }
 
-int main() {
-  solve();
-  return 0;
-}
+signed main() { solve(); }

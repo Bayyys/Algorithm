@@ -8,8 +8,7 @@ typedef long long ll;
 inline int read() {
   int s = 0;
   char ch = getchar();
-  while (ch > '9' || ch < '0')
-    ch = getchar();
+  while (ch > '9' || ch < '0') ch = getchar();
   while (ch <= '9' && ch >= '0') {
     s = (s << 3) + (s << 1) + (ch ^ 48);
     ch = getchar();
@@ -18,11 +17,11 @@ inline int read() {
 }
 
 inline void solve() {
-  int n = read();                  // 点数  [2, 2*1e5]
-  vector<int> col(n + 1);          // 颜色
-  vector<vector<int>> path(n + 1); // 路径
-  vector<int> cnt(n + 1);          // 每个颜色的数量
-  ll ans = 0;                      // 答案
+  int n = read();                   // 点数  [2, 2*1e5]
+  vector<int> col(n + 1);           // 颜色
+  vector<vector<int>> path(n + 1);  // 路径
+  vector<int> cnt(n + 1);           // 每个颜色的数量
+  ll ans = 0;                       // 答案
   for (register int i = 1; i <= n; i++) {
     int x;
     x = read();
@@ -39,8 +38,7 @@ inline void solve() {
   auto dfs = [&](auto f, int node, int father) -> void {
     int cur = cnt[col[node]];
     for (auto v : path[node]) {
-      if (v == father)
-        continue;
+      if (v == father) continue;
       cnt[col[node]] = 1;
       f(f, v, node);
     }
