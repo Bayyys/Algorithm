@@ -62,9 +62,10 @@ class Solve {
       ans = -1;
     }
     if (dp[in - 1].first == dp[out - 1].first) {
-      cout << "in: " << in << " out: " << out << " from: " << dp[in - 1].first
-           << " dist-in: " << dp[in - 1].second
-           << " dist-out: " << dp[out - 1].second << endl;
+      // cout << "in: " << in << " out: " << out << " from: " << dp[in -
+      // 1].first
+      //      << " dist-in: " << dp[in - 1].second
+      //      << " dist-out: " << dp[out - 1].second << endl;
       ans = abs(dp[in - 1].second - dp[out - 1].second);
     }
     return ans;
