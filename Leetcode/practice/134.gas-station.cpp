@@ -27,16 +27,18 @@ using namespace std;
 class Solution {
  public:
   int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-    int tSum = 0, curSum = 0, start = 0;
+    int sum = 0;
+    int val = 0;
+    int start = 0;
     for (int i = 0; i < gas.size(); i++) {
-      tSum += gas[i] - cost[i];
-      curSum += gas[i] - cost[i];
-      if (curSum < 0) {
+      sum += gas[i] - cost[i];
+      val += gas[i] - cost[i];
+      if (val < 0) {
         start = i + 1;
-        curSum = 0;
+        val = 0;
       }
     }
-    if (tSum < 0) return -1;
+    if (sum < 0) return -1;
     return start;
   }
 };
